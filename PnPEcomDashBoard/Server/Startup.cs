@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PnPEcomDashBoard.Server.Data;
 using System.Linq;
+using PnPEcomDashBoard.Client;
 
 namespace PnPEcomDashBoard.Server
 {
@@ -56,6 +57,7 @@ namespace PnPEcomDashBoard.Server
             {
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
+               // endpoints.MapBlazorHub();
                 endpoints.MapFallbackToFile("index.html");
             });
         }

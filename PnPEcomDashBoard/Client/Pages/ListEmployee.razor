@@ -1,0 +1,62 @@
+﻿@page "/listemployee"
+@using PnPEcomDashBoard.Shared.Models
+@inject HttpClient Http
+
+
+
+<h2>Employee Details</h2>
+<p>
+    <a href="/addemployee">Create New Employee</a>
+</p>
+@if (GetUsers == null)
+{
+
+}
+else
+{
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>Status</th>
+                <th>CreatedBy</th>
+                <th>LastModifiedBy</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in GetUsers)
+            {
+                <tr>
+                    <td>@employee.UserName</td>
+                    <td>@employee.Status</td>
+                    <td>@employee.CreatedBy</td>
+                    <td>@employee.LastModifiedBy</td>
+                    @*<td>
+                            <a href='/editemployee/@employee.UserId'>Edit</a>
+                            <a href='/deleteemployee/@employee.UserId'>Delete</a>
+                        </td>*@
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private User[] GetUsers;
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+
+            GetUsers = await Http.GetFromJsonAsync<User[]>("api/Users");
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+}   

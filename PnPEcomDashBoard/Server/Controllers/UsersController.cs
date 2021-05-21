@@ -21,8 +21,8 @@ namespace PnPEcomDashBoard.Server.Controllers
             _pnPContext = pnPContext;
         }
 
-        [HttpGet("GetUsers")]
-        public async Task<ActionResult<IEnumerable<User>>> GetUser()
+        [HttpGet]
+        public async Task<IEnumerable<User>> Get()
         {
             return await _pnPContext.Users.ToListAsync();
         }
